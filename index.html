@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    const userLang = navigator.language || navigator.userLanguage;
+    const lang = userLang.toLowerCase();
+
+    if (lang.startsWith('tr')) {
+      window.location.replace("/tr");
+    } else if (lang.startsWith('de')) {
+      window.location.replace("/de");
+    } else if (lang.startsWith('ru')) {
+      window.location.replace("/ru");
+    } else if (lang.startsWith('zh')) {
+      window.location.replace("/zh");
+    } else {
+      window.location.replace("/en");
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
