@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>WeLegit.Win</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/files/favicon.png" type="image/png" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #center-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;  
+      align-items: center;      
+      padding: 0 15px;
+      text-align: center;
+    }
+
+    #text-container {
+      font-size: 2.5rem;
+      white-space: pre-wrap;
+      border-right: 2px solid white;
+      padding-right: 5px;
+      box-sizing: border-box;
+      max-width: 90vw;
+      user-select: none;
+      animation: blink 1s infinite;
+      min-height: 3.5rem;
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: white; }
+      50% { border-color: transparent; }
+    }
+
+    #about {
+      margin-top: 20px;
+      font-size: 1rem;
+      max-width: 90vw;
+      user-select: none;
+    }
+
+    footer {
+      width: 100%;
+      max-width: 800px;
+      padding: 15px 10px;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      gap: 12px;
+      margin: 0 auto;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      transition: filter 0.3s ease;
+    }
+
+    #foundation {
+      font-size: 0.9rem;
+      color: #ffffff;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      #text-container {
+        font-size: 1.8rem;
+      }
+      #about {
+        font-size: 0.9rem;
+      }
+      footer {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="center-container">
+    <div id="text-container"></div>
+    <div id="about">关于：这是一个用来嘲讽作弊者的网站。保持纯净！</div>
+  </div>
+
+  <footer>
+    <span id="foundation">匿名 @ 2025 | 把这个网站分享给所有作弊的人！</span>
+    <div class="social-links">
+      <a href="https://discord.com/channels/1006190808627683379/1361045890500137220" target="_blank" rel="noopener" aria-label="Discord">
+        <img src="../files/discord.png" alt="Discord 图标" />
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const messages = [
+      "我们凭实力取胜",
+      "作弊者 1 - 真实玩家 13",
+      "你为什么要作弊？",
+      "无雷达，无透视，只有准星。",
+      "他们作弊了，我们赢了。",
+      "VAC抓不到我们，因为我们干净。",
+      "又一个作弊者倒下了。",
+      "0%作弊，100%反应力。",
+      "哭是免费的。",
+      "作弊者已断开：检测到过多真实操作。",
+      "作弊者：请举报 😭 真实玩家：技术问题。",
+      "当场抓获，封号处理！",
+      "真实玩家永不投降。",
+      "技术 > 作弊，每一次都是。",
+      "保持干净，否则就被封禁。",
+      "技术永远胜过作弊。",
+      "去别的地方作弊吧，这里是WeLegit.Win。",
+    ];
+
+    const textContainer = document.getElementById("text-container");
+
+    let msgIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let typingSpeed = 70;
+
+    function type() {
+      const currentMsg = messages[msgIndex];
+
+      if (!deleting) {
+        textContainer.textContent = currentMsg.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentMsg.length) {
+          deleting = true;
+          setTimeout(type, 2000);
+        } else {
+          setTimeout(type, typingSpeed);
+        }
+      } else {
+        textContainer.textContent = currentMsg.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          msgIndex = (msgIndex + 1) % messages.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, typingSpeed / 2);
+        }
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
